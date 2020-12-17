@@ -1,14 +1,28 @@
 package com.lmx.rxjava2retrofit2.activity
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.view.animation.OvershootInterpolator
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.lmx.magicindicator.FragmentContainerHelper
+import com.lmx.magicindicator.MagicIndicator
+import com.lmx.magicindicator.UIUtil
+import com.lmx.magicindicator.abs.IPagerIndicator
+import com.lmx.magicindicator.abs.IPagerTitleView
+import com.lmx.magicindicator.buildins.CommonNavigatorAdapter
+import com.lmx.magicindicator.buildins.commonnavigator.CommonNavigator
+import com.lmx.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
+import com.lmx.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView
+import com.lmx.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView
 import com.lmx.rxjava2retrofit2.R
 import com.lmx.rxjava2retrofit2.adapter.ViewPagerAdapter
 import com.lmx.rxjava2retrofit2.adapter.ViewPagerFragmentStateAdapter
@@ -52,7 +66,7 @@ class ViewPagerActivity : AppCompatActivity() {
                 viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
             }
         } else {
-            tabLayout.visibility = View.VISIBLE
+            llIndicator.visibility = View.VISIBLE
             initFragment()
         }
         viewPager.overScrollMode = ViewPager2.OVER_SCROLL_NEVER
@@ -61,26 +75,58 @@ class ViewPagerActivity : AppCompatActivity() {
     private fun initFragment() {
         val fragments = mutableListOf<Fragment>()
         for (i in 0 until 5) {
-            tabLayout.addTab(tabLayout.newTab().setText("Tab$i"))
             PageFragment.newInstance(i)?.let { fragments.add(it) }
         }
         viewPager.adapter = ViewPagerFragmentStateAdapter(this, fragments)
-        // 添加页签选中监听
+        val commonNavigator = CommonNavigator(this)
+        commonNavigator.setAdapter(object : CommonNavigatorAdapter() {
+            override fun getCount(): Int = fragments.size
 
-        // 添加页签选中监听
-        tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                viewPager.currentItem = tab.position
+            @SuppressLint("SetTextI18n")
+            override fun getTitleView(context: Context?, index: Int): IPagerTitleView? {
+                val simplePagerTitleView: SimplePagerTitleView =
+                    ColorTransitionPagerTitleView(context!!)
+                simplePagerTitleView.setNormalColor(Color.GRAY)
+                simplePagerTitleView.setSelectedColor(Color.RED)
+                simplePagerTitleView.text = "Fragment $index"
+                simplePagerTitleView.setOnClickListener {
+                    viewPager.currentItem = index
+                }
+                return simplePagerTitleView
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
-            override fun onTabReselected(tab: TabLayout.Tab) {}
+            override fun getIndicator(context: Context?): IPagerIndicator? {
+                val linePagerIndicator = LinePagerIndicator(context!!)
+                linePagerIndicator.setMode(LinePagerIndicator.MODE_EXACTLY)
+                linePagerIndicator.setLineWidth(UIUtil.dip2px(context, 20.0).toFloat())
+                linePagerIndicator.setColors(Color.RED)
+                return linePagerIndicator
+            }
         })
+
+        val magicIndicator = MagicIndicator(this)
+        llIndicator.addView(magicIndicator)
+        magicIndicator.setNavigator(commonNavigator)
+        val titleContainer: LinearLayout =
+            commonNavigator.getTitleContainer()!! // must after setNavigator
+
+        titleContainer.showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE
+        titleContainer.dividerDrawable = object : ColorDrawable() {
+            override fun getIntrinsicWidth(): Int {
+                return UIUtil.dip2px(this@ViewPagerActivity, 15.0)
+            }
+        }
+
+        val fragmentContainerHelper = FragmentContainerHelper()
+        fragmentContainerHelper.init(magicIndicator)
+        fragmentContainerHelper.setInterpolator(OvershootInterpolator(2.0f))
+        fragmentContainerHelper.setDuration(300)
+
         // 注册页面变化的回调接口
         viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                tabLayout.setScrollPosition(position, 0f, false)
+                fragmentContainerHelper.handlePageSelected(position)
             }
         })
     }
