@@ -55,4 +55,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.3.0'
     //自定义Tab
     implementation project(':magicindicator')
+    //自定义View
+    implementation project(':costomView')
 }

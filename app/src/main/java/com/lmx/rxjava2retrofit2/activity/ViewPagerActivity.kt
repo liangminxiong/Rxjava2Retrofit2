@@ -74,7 +74,7 @@ class ViewPagerActivity : AppCompatActivity() {
 
     private fun initFragment() {
         val fragments = mutableListOf<Fragment>()
-        for (i in 0 until 5) {
+        for (i in 1 until 12) {
             PageFragment.newInstance(i)?.let { fragments.add(it) }
         }
         viewPager.adapter = ViewPagerFragmentStateAdapter(this, fragments)

@@ -5,14 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvContent"
-        android:layout_width="wrap_content"
+    <com.lmx.costomview.WrapLayout
+        android:id="@+id/wrapLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:wlyHorizontalSpacing="10dp"
+        app:wlyVerticalSpacing="10dp"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
