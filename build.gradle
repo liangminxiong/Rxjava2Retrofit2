@@ -24,3 +24,14 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    compileSdkVersion = 30
+    buildToolsVersion = "30.0.3"
+    minSdkVersion = 21
+    targetSdkVersion = 30
+    // update info when release new version
+    namaSdkVersionCode = 720
+    namaSdkVersionName = "7.2.0"
+    namaSdkCommitId = "7.2.0_phy_2e6e581e_bb3045b"
+}

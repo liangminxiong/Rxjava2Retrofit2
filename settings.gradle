@@ -1,3 +1,6 @@
+include ':camera'
+include ':faceunity'
+include ':imagePreview'
 include ':costomView'
 include ':magicindicator'
 include ':app'

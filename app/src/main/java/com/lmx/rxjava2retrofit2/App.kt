@@ -1,6 +1,7 @@
 package com.lmx.rxjava2retrofit2
 
 import androidx.multidex.MultiDexApplication
+import com.faceunity.FURenderer
 
 /**
  * Created by lmx on 2020/12/15
@@ -17,5 +18,6 @@ class App : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         app = this
+        FURenderer.initFURenderer(this)
     }
 }

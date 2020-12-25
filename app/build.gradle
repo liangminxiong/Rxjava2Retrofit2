@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -15,7 +16,15 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+
+    //使用Kotlin实验特性
+    androidExtensions {
+        experimental = true
     }
 
     buildTypes {
@@ -57,4 +66,13 @@ dependencies {
     implementation project(':magicindicator')
     //自定义View
     implementation project(':costomView')
+    //图片浏览
+    implementation project(':imagePreview')
+    //BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    // 权限请求框架：https://github.com/getActivity/XXPermissions
+    implementation 'com.hjq:xxpermissions:9.6'
+    //美颜
+    implementation project(':faceunity')
+    implementation project(':camera')
 }
