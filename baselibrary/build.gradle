@@ -1,8 +1,6 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
 }
 
 android {
@@ -10,21 +8,13 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.lmx.rxjava2retrofit2"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
-        multiDexEnabled true
-    }
-    buildFeatures {
-        dataBinding = true
-    }
-
-    //使用Kotlin实验特性
-    androidExtensions {
-        experimental = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -51,6 +41,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    //BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    // 权限请求框架：https://github.com/getActivity/XXPermissions
+    implementation 'com.hjq:xxpermissions:9.6'
+
     //自定义Tab
     implementation project(':magicindicator')
     //自定义View
@@ -61,5 +58,5 @@ dependencies {
     implementation project(':faceunity')
     implementation project(':camera')
     implementation project(':magager')
-    implementation project(':baselibrary')
+    implementation project(':common_mvvm')
 }

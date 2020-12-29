@@ -13,10 +13,13 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/baselibrary" />
             <option value="$PROJECT_DIR$/camera" />
+            <option value="$PROJECT_DIR$/common_mvvm" />
             <option value="$PROJECT_DIR$/costomView" />
             <option value="$PROJECT_DIR$/faceunity" />
             <option value="$PROJECT_DIR$/imagePreview" />
+            <option value="$PROJECT_DIR$/magager" />
             <option value="$PROJECT_DIR$/magicindicator" />
           </set>
         </option>

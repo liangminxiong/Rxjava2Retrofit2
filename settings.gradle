@@ -1,7 +1,10 @@
+include ':baselibrary'
+include ':common_mvvm'
+include ':magager'
 include ':camera'
 include ':faceunity'
 include ':imagePreview'
 include ':costomView'
 include ':magicindicator'
 include ':app'
-rootProject.name = "Rxjava2Retrofit2"
+rootProject.name = "CostomDemo"

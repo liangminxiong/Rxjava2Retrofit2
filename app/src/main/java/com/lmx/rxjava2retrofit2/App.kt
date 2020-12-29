@@ -1,13 +1,13 @@
 package com.lmx.rxjava2retrofit2
 
-import androidx.multidex.MultiDexApplication
 import com.faceunity.FURenderer
+import com.lmx.baselibrary.BaseApplication
 
 /**
  * Created by lmx on 2020/12/15
  * Describe: application
  */
-class App : MultiDexApplication() {
+class App :BaseApplication(){
 
     private var app: App? = null
 

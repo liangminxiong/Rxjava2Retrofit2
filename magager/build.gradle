@@ -1,8 +1,6 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
 }
 
 android {
@@ -10,21 +8,13 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.lmx.rxjava2retrofit2"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
-        multiDexEnabled true
-    }
-    buildFeatures {
-        dataBinding = true
-    }
-
-    //使用Kotlin实验特性
-    androidExtensions {
-        experimental = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -44,22 +34,11 @@ android {
 
 dependencies {
 
-    //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-
-    //自定义Tab
-    implementation project(':magicindicator')
-    //自定义View
-    implementation project(':costomView')
-    //图片浏览
-    implementation project(':imagePreview')
-    //美颜
-    implementation project(':faceunity')
-    implementation project(':camera')
-    implementation project(':magager')
-    implementation project(':baselibrary')
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

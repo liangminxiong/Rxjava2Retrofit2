@@ -39,5 +39,6 @@ class MainActivity : BaseActivity() {
                 )
             )
         }
+        btnManager.setOnClickListener { FriendCircleActivity.newInstance(this, 0) }
     }
 }
