@@ -9,7 +9,7 @@ import com.lmx.common_mvvm.ext.util.logd
  * Created by lmx on 2020/5/6
  * Describe : 自定义结果集封装类
  */
-class KtxLifeCycleCallBack : Application.ActivityLifecycleCallbacks {
+ class KtxLifeCycleCallBack : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         KtxActivityManger.pushActivity(activity)
@@ -34,7 +34,8 @@ class KtxLifeCycleCallBack : Application.ActivityLifecycleCallbacks {
         KtxActivityManger.popActivity(activity)
     }
 
-    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
+
     }
 
     override fun onActivityStopped(activity: Activity) {

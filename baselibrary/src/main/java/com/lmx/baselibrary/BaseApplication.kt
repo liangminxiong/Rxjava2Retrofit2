@@ -1,6 +1,8 @@
 package com.lmx.baselibrary
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
@@ -15,12 +17,18 @@ open class BaseApplication :Application(), ViewModelStoreOwner {
 
     private var mFactory: ViewModelProvider.Factory? = null
 
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        lateinit var context: Context
+    }
+
     override fun getViewModelStore(): ViewModelStore {
         return mAppViewModelStore
     }
 
     override fun onCreate() {
         super.onCreate()
+        context= applicationContext
         mAppViewModelStore = ViewModelStore()
     }
 

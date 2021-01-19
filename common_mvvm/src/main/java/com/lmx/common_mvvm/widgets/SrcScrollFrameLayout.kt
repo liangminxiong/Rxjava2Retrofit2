@@ -130,7 +130,7 @@ class SrcScrollFrameLayout : FrameLayout {
             } else {
                 mMatrix!!.postTranslate(mPanDistance, 0f)
             }
-            canvas.drawBitmap(mSrcBitmap, mMatrix, mPaint)
+            canvas.drawBitmap(mSrcBitmap!!, mMatrix!!, mPaint)
         }
         if (length + mPanDistance < (if (scrollOrientationIsVertical()) measuredHeight else measuredWidth)) {
             //用于补充留白的图片出现在屏幕
@@ -141,7 +141,7 @@ class SrcScrollFrameLayout : FrameLayout {
                 } else {
                     mMatrix!!.postTranslate((i + 1) * mSrcBitmap!!.width + mPanDistance, 0f)
                 }
-                canvas.drawBitmap(mSrcBitmap, mMatrix, mPaint)
+                canvas.drawBitmap(mSrcBitmap!!, mMatrix!!, mPaint)
             }
         }
         //绘制遮罩层

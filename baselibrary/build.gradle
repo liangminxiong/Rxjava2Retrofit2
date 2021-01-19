@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -48,15 +50,20 @@ dependencies {
     // 权限请求框架：https://github.com/getActivity/XXPermissions
     implementation 'com.hjq:xxpermissions:9.6'
 
-    //自定义Tab
-    implementation project(':magicindicator')
-    //自定义View
-    implementation project(':costomView')
-    //图片浏览
-    implementation project(':imagePreview')
-    //美颜
-    implementation project(':faceunity')
-    implementation project(':camera')
-    implementation project(':magager')
+    // rxjava + retrofit
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api 'io.reactivex.rxjava2:rxjava:2.2.20'
+    api 'com.squareup.retrofit2:retrofit:2.9.0'
+    api 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
+    api 'com.squareup.retrofit2:converter-gson:2.9.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.1.0'
+    api 'com.squareup.okhttp3:okhttp:4.9.0'
+    api 'com.squareup.okhttp3:logging-interceptor:4.3.0'
+    api 'com.squareup.okio:okio:2.8.0'
+    api 'com.alibaba:fastjson:1.2.75'
+
+    api 'org.greenrobot:eventbus:3.2.0'
+
     implementation project(':common_mvvm')
+
 }

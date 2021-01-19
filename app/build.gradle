@@ -51,6 +51,11 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
+    //BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    // 权限请求框架：https://github.com/getActivity/XXPermissions
+    implementation 'com.hjq:xxpermissions:9.6'
+
     //自定义Tab
     implementation project(':magicindicator')
     //自定义View
@@ -62,4 +67,6 @@ dependencies {
     implementation project(':camera')
     implementation project(':magager')
     implementation project(':baselibrary')
+
+    implementation project(':common_mvvm')
 }

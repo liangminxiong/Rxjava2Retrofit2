@@ -48,7 +48,6 @@ dependencies {
     //retrofit
     api "com.squareup.retrofit2:retrofit:2.9.0"
     api "com.squareup.retrofit2:converter-gson:2.9.0"
-    api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     //屏幕适配
     api 'me.jessyan:autosize:1.2.1'
 }
